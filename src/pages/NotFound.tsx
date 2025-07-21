@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { Stack, Button } from "@mui/material"
 
 import AppHelmet from "../components/AppHelmet"
+import { routes } from "../components/Router"
 
 interface INotFound {
   message?: string
@@ -18,8 +19,7 @@ const NotFound: FC<INotFound> = ({ message = "Page not found" }) => {
       <h1 className="page__error-code">404</h1>
       <h3>{ message }</h3>
 
-      {/* <Link to={ '/' } className="btn mt-1">To main</Link> */}
-      <Button variant="outlined" component={Link} to='/'>
+      <Button variant="outlined" component={Link} to={routes.home.path}>
         To main
       </Button>
     </Stack>

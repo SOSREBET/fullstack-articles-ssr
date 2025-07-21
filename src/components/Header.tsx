@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '../assets/icons/menu_icon.svg?react'
 import HeaderDrawer from './HeaderDrawer';
+import { routes } from './Router';
 
 const Header: FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -32,7 +33,8 @@ const Header: FC = () => {
                         <MenuIcon />
                     </IconButton>
                     <Typography component="div" sx={{ flexGrow: 1 }}>
-                        <Button color="inherit" component={Link} to={'/'}>Articles</Button>
+                        <Button color="inherit" component={Link} to={routes.home.path}>Home</Button>
+                        <Button color="inherit" component={Link} to={routes.articles.path}>Articles</Button>
                     </Typography>
 
                     <Button color="inherit">Login</Button>

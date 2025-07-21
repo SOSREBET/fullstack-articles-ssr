@@ -1,8 +1,8 @@
 import type { FC } from "react"
 import Button from "@mui/material/Button"
 import { Grid } from "@mui/material"
-
-
+import { Link } from "react-router-dom"
+import { routes } from "./Router"
 
 const HomeJumbotron: FC = () => {
   return (
@@ -13,12 +13,9 @@ const HomeJumbotron: FC = () => {
             repudiandae, veniam, dolores suscipit quod ut et vel quaerat illo deserunt ipsum voluptas neque 
             nobis fugit. Pariatur!
         </p>
-        <Button variant="contained" sx={{marginTop: '10px'}}>
+        <Button variant="contained" sx={{marginTop: '10px'}} component={Link} to={routes.articles.path}>
             View all articles
         </Button>
-        {/* <Link to={ routes.lots.path } className="btn-vfx home__btn">
-            View all articles 
-        </Link> */}
     </Grid>
   )
 }

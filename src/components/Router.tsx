@@ -5,12 +5,14 @@ const Home = lazy(() => import ("../pages/Home"))
 const Articles = lazy(() => import ("../pages/Articles"))
 const NotFound = lazy(() => import ("../pages/NotFound"))
 
+type RoutesType = 'home' | 'articles' 
+
 interface IRoute {
   path: string
   element: ReactNode
 }
 
-export const routes: Record<string, IRoute> = {
+export const routes: Record<RoutesType, IRoute> = {
   home: { path: '/', element: <Home /> },  
   articles: { path: '/articles/', element: <Articles /> },  
 }
@@ -20,11 +22,7 @@ const Router = () => {
   const [routesArray, setRoutesArray] = useState<IRoute[]>([])
 
   useEffect(() => {
-    const newRoutes: IRoute[] = []
-    for (let key in routes) {
-      newRoutes.push(routes[key])
-    }
-    setRoutesArray(newRoutes)
+    setRoutesArray(Object.values(routes))
   }, [])
 
   return (

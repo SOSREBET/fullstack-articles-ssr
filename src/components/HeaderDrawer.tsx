@@ -1,5 +1,7 @@
 import { type FC } from "react"
 import { Box, Drawer, List, ListItem, ListItemButton, ListItemText } from "@mui/material"
+import { Link } from "react-router-dom"
+import { routes } from "./Router"
 
 interface IHeaderDrawer {
     isOpen: boolean
@@ -12,7 +14,7 @@ const HeaderDrawer: FC<IHeaderDrawer> = ({ isOpen, toggleDrawer}) => {
       <List>
         {['Articles'].map((text) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton>
+            <ListItemButton component={Link} to={routes.articles.path}>
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
