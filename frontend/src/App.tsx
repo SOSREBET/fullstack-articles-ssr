@@ -1,8 +1,8 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter } from 'react-router-dom'
+import { Box, styled } from '@mui/material'
 import Router from './components/Router.tsx'
 import BackdropLoader from './components/BackdropLoader.tsx'
-import { styled } from '@mui/material'
 
 // import AutoScrollTop from './components/AutoScrollTop.tsx'
 
@@ -19,7 +19,8 @@ function App() {
       </Suspense>
       <main>
         {/* <AutoScrollTop /> */}
-        <Suspense fallback={ <BackdropLoader /> }>
+        <Box sx={{marginTop: 5}}/>
+        <Suspense fallback={<BackdropLoader />}>
           <Router />
         </Suspense>
       </main>

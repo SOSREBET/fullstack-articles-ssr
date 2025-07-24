@@ -3,9 +3,10 @@ import { Route, Routes } from "react-router-dom"
 
 const Home = lazy(() => import ("../pages/Home"))
 const Articles = lazy(() => import ("../pages/Articles"))
+const DetailedArticle = lazy(() => import ("../pages/DetailedArticle"))
 const NotFound = lazy(() => import ("../pages/NotFound"))
 
-type RoutesType = 'home' | 'articles' 
+type RoutesType = 'home' | 'articles' | 'detailedArticle'
 
 interface IRoute {
   path: string
@@ -15,6 +16,7 @@ interface IRoute {
 export const routes: Record<RoutesType, IRoute> = {
   home: { path: '/', element: <Home /> },  
   articles: { path: '/articles/', element: <Articles /> },  
+  detailedArticle: {path: '/article/:id/', element: <DetailedArticle />}
 }
 
 

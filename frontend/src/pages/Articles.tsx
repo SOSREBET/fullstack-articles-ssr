@@ -1,55 +1,61 @@
-import { useEffect, useState, type FC } from "react"
-import { Link } from "react-router-dom"
-import { Button, Grid } from "@mui/material"
-import { routes } from "../components/Router"
+import { lazy, Suspense, type FC } from "react"
+import { Alert, AlertTitle, Grid } from "@mui/material"
 import AppHelmet from "../components/AppHelmet"
+import { useAppSelector } from "../hooks/redux"
+import useGetUrlParams from "../hooks/useGetUrlParams"
+import { useGetArticlesQuery } from "../services/articleApi"
+import ArticleList from "../components/ArticleList"
 
 export interface Article {
-  id: number;
-  title: string;
-  text: string;
-  date: string;
+    id: number;
+    title: string;
+    text: string;
+    date: string;
 }
 
-const Articles: FC = () => {  
-    const [articles, setArticles] = useState<Article[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+const LazyArticlePagination = lazy(() => import('../components/ArticlePagination'))
 
-    
-    useEffect(() => {
-        const fetchData = async () => {
-        try {
-            const response = await fetch('/database.json'); // Путь от public/
-            const data: Article[] = await response.json();
-            setArticles(data);
-        } catch (error) {
-            console.error('Ошибка загрузки:', error)
-        } finally {
-            setIsLoading(false)
-        }
-        }
-        fetchData()
-    }, [])
+const Articles: FC = () => {
+    const reduxParams = useAppSelector(state => state.articleSlice)
+    const currentPage = useAppSelector(state => state.articleSlice.page)
+    const [newReduxParams, isSkip] = useGetUrlParams(reduxParams)
+    const { data, isFetching, isError } = useGetArticlesQuery(newReduxParams, { skip: isSkip })
 
     return (
-        <Grid 
+        <Grid
             container
             spacing={2}
             sx={{
-                
+
             }}
             maxWidth={'xl'}
             component='section'
             className="container"
         >
             <AppHelmet title="Articles" />
-            {articles.map((article) => (
-                <div key={article.id}>
-                <h2>{article.title}</h2>
-                <p>{article.text}</p>
-                <time>{article.date}</time>
-                </div>
-            ))}
+
+            {data &&
+                <ArticleList
+                    articles={data.results}
+                    isFetching={isFetching}
+                />
+            }
+            {isError &&
+                <Alert variant="filled" severity="error" >
+                    <AlertTitle>Error</AlertTitle>
+                    Something went wrong.
+                </Alert>
+            }
+
+            {data && data.count > 0 &&
+                <Suspense>
+                    <LazyArticlePagination
+                        reduxParams={reduxParams}
+                        currentPage={parseInt(currentPage)}
+                        pages={data.pages}
+                    />
+                </Suspense>
+            }
         </Grid>
     )
 }
