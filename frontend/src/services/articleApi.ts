@@ -11,8 +11,9 @@ export const articleApi = createApi({
 
     endpoints: (builder) => ({
         getArticles: builder.query<IArticleList, IArticleParams>({
-            query: () => ({
+            query: (props) => ({
                 url: '',
+                params: props,
                 method: 'GET'
             }),
             providesTags: () => ['Articles'],

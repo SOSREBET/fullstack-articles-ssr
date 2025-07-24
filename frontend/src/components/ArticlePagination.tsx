@@ -16,10 +16,13 @@ const ArticlePagination: FC<IArticlePagination> = ({ reduxParams, currentPage, p
     const navigate = useNavigate()
 
     const handleChange = (_: ChangeEvent<unknown>, value: number) => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
         if (reduxParams) {
             setReduxUrlParams({ ...reduxParams, page: value.toString() })
         }
-        navigate(`${routes.articles.path}${value === 1 ? '' : `?page=${value}`}`)
+        navigate(
+            `${routes.articles.path}?${reduxParams.search ? `search=${reduxParams.search}&` : ''}${value === 1 ? '' : `page=${value}`}`
+        )
     }
 
     return (

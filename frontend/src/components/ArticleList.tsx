@@ -18,19 +18,26 @@ const ArticleList: FC<IArticleList> = ({ articles, isFetching }) => {
                 <BackdropLoader />
                 :
                 <Stack spacing={2}>
-                    {articles.map((article) => (
-                        <Button
-                            key={article.id}
-                            variant="text"
-                            component={Link}
-                            to={routes.detailedArticle.path.replace(':id', article.id.toString())}
-                        >
-                            <Grid container spacing={1} sx={{ width: '100%' }}>
-                                <Grid size={{ lg: 'grow', sm: 12 }}><h2>{article.title}</h2></Grid>
-                                <Grid size={{ lg: 'auto', sm: 12 }}><time><Chip color="info" label={article.created_at} variant="outlined" /></time></Grid>
-                            </Grid>
-                        </Button>
-                    ))}
+                    {articles.length === 0
+                        ?
+                        <h2>Nothing was found</h2>
+                        :
+                        <>
+                            {articles.map((article) => (
+                                <Button
+                                    key={article.id}
+                                    variant="text"
+                                    component={Link}
+                                    to={routes.detailedArticle.path.replace(':id', article.id.toString())}
+                                >
+                                    <Grid container spacing={1} sx={{ width: '100%' }}>
+                                        <Grid size={{ lg: 'grow', sm: 12 }}><h2>{article.title}</h2></Grid>
+                                        <Grid size={{ lg: 'auto', sm: 12 }}><time><Chip color="info" label={article.created_at} variant="outlined" /></time></Grid>
+                                    </Grid>
+                                </Button>
+                            ))}
+                        </>
+                    }
                 </Stack>
             }
         </>

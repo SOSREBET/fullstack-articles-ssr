@@ -13,6 +13,7 @@ export interface Article {
     date: string;
 }
 
+const LazyArticleFilter = lazy(() => import('../components/ArticleFilter'))
 const LazyArticlePagination = lazy(() => import('../components/ArticlePagination'))
 
 const Articles: FC = () => {
@@ -25,14 +26,14 @@ const Articles: FC = () => {
         <Grid
             container
             spacing={2}
-            sx={{
-
-            }}
             maxWidth={'xl'}
             component='section'
             className="container"
         >
             <AppHelmet title="Articles" />
+            <Suspense>
+                <LazyArticleFilter reduxParams={newReduxParams} />
+            </Suspense>
 
             {data &&
                 <ArticleList
@@ -50,7 +51,7 @@ const Articles: FC = () => {
             {data && data.count > 0 &&
                 <Suspense>
                     <LazyArticlePagination
-                        reduxParams={reduxParams}
+                        reduxParams={newReduxParams}
                         currentPage={parseInt(currentPage)}
                         pages={data.pages}
                     />
