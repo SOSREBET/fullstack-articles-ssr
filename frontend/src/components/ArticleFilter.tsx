@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState, type FC } from "react"
 import type { IArticleParams } from "../types/Article"
-import { Box, debounce, Grid, TextField } from "@mui/material"
+import { Box, debounce, TextField } from "@mui/material"
 import SearchIcon from '../assets/icons/search_icon.svg?react'
 import useSetReduxUrlParams from "../hooks/useSetReduxUrlParams"
 

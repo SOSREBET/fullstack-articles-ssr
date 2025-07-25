@@ -1,10 +1,10 @@
 import type { FC } from "react"
 import { useParams } from "react-router-dom"
 import { useGetArticleQuery } from "../services/articleApi"
-import { Alert, AlertTitle, Breadcrumbs, Chip, Grid, Link as MUILink, Typography } from "@mui/material"
+import { Alert, AlertTitle, Chip, Grid, Typography } from "@mui/material"
 import BackdropLoader from "../components/BackdropLoader"
-import { Link } from "react-router-dom"
-import { routes } from "../components/Router"
+import DetailedArticleBreadcrumbs from "../components/UI/DetailedArticleBreadcrumbs"
+import AppHelmet from "../components/AppHelmet"
 
 
 const DetailedArticle: FC = () => {
@@ -13,30 +13,16 @@ const DetailedArticle: FC = () => {
 
     return (
         <Grid container className='container'>
-            <Breadcrumbs
-                aria-label="breadcrumb"
-                separator="›"
-                sx={{
-                    marginBottom: 2,
-                    '& .MuiBreadcrumbs-separator': {
-                        color: 'white',
-                    },
-                }}
-            >
-                <MUILink underline="hover" color="info" component={Link} to={routes.articles.path}>
-                    Articles
-                </MUILink>
-                {article
-                    ? <Typography sx={{ color: 'white' }}>Article #{article && article.id}</Typography>
-                    : <Typography sx={{ color: 'white' }}>Article not found</Typography>
-                }
-            </Breadcrumbs>
+            <AppHelmet title={`Article ${article ? `#${article.id}` : 'not found'}`} />
+            <DetailedArticleBreadcrumbs article={article} />
 
             {isError &&
-                <Grid size={12}><Alert variant="filled" severity="error" >
-                    <AlertTitle>Error</AlertTitle>
-                    Something went wrong.
-                </Alert></Grid>
+                <Grid size={12}>
+                    <Alert variant="filled" severity="error" >
+                        <AlertTitle>Error</AlertTitle>
+                        Something went wrong.
+                    </Alert>
+                </Grid>
             }
             {article &&
                 <Grid>

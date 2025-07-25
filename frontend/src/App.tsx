@@ -4,8 +4,6 @@ import { Box, styled } from '@mui/material'
 import Router from './components/Router.tsx'
 import BackdropLoader from './components/BackdropLoader.tsx'
 
-// import AutoScrollTop from './components/AutoScrollTop.tsx'
-
 const LazyHeader = lazy(() => import("./components/Header.tsx"))
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -18,8 +16,7 @@ function App() {
         <Offset />
       </Suspense>
       <main>
-        {/* <AutoScrollTop /> */}
-        <Box sx={{marginTop: 5}}/>
+        <Box sx={{marginTop: 4}}/>
         <Suspense fallback={<BackdropLoader />}>
           <Router />
         </Suspense>
