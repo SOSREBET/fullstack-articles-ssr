@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'Michroma-Regular';
+  src: local('Michroma-Regular'),
+   url(../assets/fonts/Michroma-Regular.ttf) format('truetype');
+}
+
+:root {
+  font-family: 'Michroma-Regular';
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0px 20px 20px 20px;
+}
