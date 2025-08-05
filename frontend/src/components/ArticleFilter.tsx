@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState, type FC } from "react"
 import type { IArticleParams } from "../types/Article"
 import { Box, debounce, TextField } from "@mui/material"
-import SearchIcon from '../assets/icons/search_icon.svg?react'
+import SearchIcon from '../assets/icons/search_icon.svg'
 import useSetReduxUrlParams from "../hooks/useSetReduxUrlParams"
 
 interface IArticleFilter {
@@ -32,7 +32,9 @@ const ArticleFilter: FC<IArticleFilter> = ({ reduxParams }) => {
 
     return (
         <Box sx={{ display: 'flex', alignItems: 'flex-end', width: '100%', marginBottom: 2 }}>
-            <Box sx={{ color: 'action.active', mr: 1 }} ><SearchIcon /></Box>
+            <Box sx={{ color: 'action.active', mr: 1 }} >
+                <img src={SearchIcon} alt="search icon" width={20} height={20}/>
+            </Box>
             <TextField
                 id="filled-search"
                 label="Search"

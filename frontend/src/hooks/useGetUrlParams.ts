@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useSearchParams } from "react-router-dom"
+import { useSearchParams } from "react-router"
 import { useAppDispatch } from "./redux"
 import { initialState, setParams } from "../store/reducers/articleSlice"
 import type { IArticleParams } from "../types/Article"

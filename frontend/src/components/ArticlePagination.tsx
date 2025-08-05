@@ -3,7 +3,7 @@ import type { IArticleParams } from "../types/Article"
 import useSetReduxUrlParams from "../hooks/useSetReduxUrlParams"
 import { Pagination } from "@mui/material"
 import { routes } from "./Router"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router"
 
 interface IArticlePagination {
     reduxParams: IArticleParams

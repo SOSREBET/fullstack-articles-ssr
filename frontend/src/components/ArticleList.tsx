@@ -2,7 +2,7 @@ import { Button, Stack, Grid, Chip } from "@mui/material"
 import type { FC } from "react"
 import type { IArticle } from "../types/Article"
 import BackdropLoader from "./BackdropLoader"
-import { Link } from "react-router-dom"
+import { Link } from "react-router"
 import { routes } from "./Router"
 
 interface IArticleList {

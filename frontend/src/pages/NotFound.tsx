@@ -1,5 +1,5 @@
 import { type FC } from "react"
-import { Link } from "react-router-dom"
+import { Link } from "react-router"
 import { Button, Grid } from "@mui/material"
 import AppHelmet from "../components/AppHelmet"
 import { routes } from "../components/Router"

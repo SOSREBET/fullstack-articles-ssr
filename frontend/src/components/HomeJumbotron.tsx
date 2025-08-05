@@ -1,7 +1,7 @@
 import type { FC } from "react"
 import Button from "@mui/material/Button"
 import { Grid } from "@mui/material"
-import { Link } from "react-router-dom"
+import { Link } from "react-router"
 import { routes } from "./Router"
 
 const HomeJumbotron: FC = () => {

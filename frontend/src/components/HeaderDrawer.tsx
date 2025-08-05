@@ -1,6 +1,6 @@
 import { type FC } from "react"
 import { Box, Drawer, List, ListItem, ListItemButton, ListItemText } from "@mui/material"
-import { Link } from "react-router-dom"
+import { Link } from "react-router"
 import { routes } from "./Router"
 
 interface IHeaderDrawer {
