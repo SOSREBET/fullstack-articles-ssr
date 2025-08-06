@@ -1,27 +1,33 @@
 import { type FC } from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { frontendDomain } from '../services/domains'
 
 interface IAppHelmet {
     title: string
     description?: string
     url?: string
+    canonical_url?: string
 }
 
-const AppHelmet: FC<IAppHelmet> = ({ 
-    title, 
-    description = "Articles", 
-    url = "", 
+const AppHelmet: FC<IAppHelmet> = ({
+    title,
+    description = "Articles",
+    url = "",
+    canonical_url
 }) => {
     return (
-        <Helmet>
-            <title>{ title }</title>
-            <meta property="og:title" content={ title } />
-            <meta property="og:description" content={ description } />
-            <meta property="og:url" content={ frontendDomain + url } />
+        <Helmet defer={false}>
+            <title>{title}</title>
+            <meta name="description" content={description} />
+            <meta property="og:title" content={title} />
+            <meta property="og:description" content={description} />
+            <meta property="og:url" content={frontendDomain + url} />
             <meta property="og:type" content="article" />
             <meta property="og:site_name" content="Articles" />
             <meta property="og:locale" content="en_US" />
+            {canonical_url &&
+                <link href='frontendDomain + url' rel='canonical' as=''/>
+            }
         </Helmet>
     )
 }

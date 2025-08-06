@@ -1,47 +1,34 @@
-import { Button, Stack, Grid, Chip } from "@mui/material"
-import type { FC } from "react"
-import type { IArticle } from "../types/Article"
+import { Stack } from "@mui/material"
+import { memo, type FC } from "react"
 import BackdropLoader from "./BackdropLoader"
-import { Link } from "react-router-dom"
-import { routes } from "./Router"
+import ArticleListItem from "./UI/ArticleListItem"
+import type { IArticle } from "../types/Article"
 
 interface IArticleList {
     articles: IArticle[]
     isFetching: boolean
 }
 
-const ArticleList: FC<IArticleList> = ({ articles, isFetching }) => {
+const ArticleList: FC<IArticleList> = memo(({ articles, isFetching }) => {
     return (
         <>
             {isFetching
                 ?
                 <BackdropLoader />
                 :
-                <Stack spacing={2}>
+                <Stack spacing={2} role="feed">
                     {articles.length === 0
                         ?
-                        <h2>Nothing was found</h2>
+                        <h3>Nothing was found</h3>
                         :
                         <>
-                            {articles.map((article) => (
-                                <Button
-                                    key={article.id}
-                                    variant="text"
-                                    component={Link}
-                                    to={routes.detailedArticle.path.replace(':id', article.id.toString())}
-                                >
-                                    <Grid container spacing={1} sx={{ width: '100%' }}>
-                                        <Grid size={{ lg: 'grow', sm: 12 }}><h2>{article.title}</h2></Grid>
-                                        <Grid size={{ lg: 'auto', sm: 12 }}><time><Chip color="info" label={article.created_at} variant="outlined" /></time></Grid>
-                                    </Grid>
-                                </Button>
-                            ))}
+                            {articles.map((article) => (<ArticleListItem key={article.id} article={article} />))}
                         </>
                     }
                 </Stack>
             }
         </>
     )
-}
+})
 
 export default ArticleList

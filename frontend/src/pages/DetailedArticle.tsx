@@ -1,5 +1,5 @@
 import type { FC } from "react"
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router"
 import { useGetArticleQuery } from "../services/articleApi"
 import { Alert, AlertTitle, Chip, Grid, Typography } from "@mui/material"
 import BackdropLoader from "../components/BackdropLoader"
@@ -9,25 +9,30 @@ import AppHelmet from "../components/AppHelmet"
 
 const DetailedArticle: FC = () => {
     const { id: articleId } = useParams()
-    const { data: article, isFetching, isError } = useGetArticleQuery(articleId ? articleId : '')
+    const { data: article, isFetching, isError, isSuccess } = useGetArticleQuery(articleId ? articleId : '')
 
     return (
-        <Grid container className='container'>
-            <AppHelmet title={`Article ${article ? `#${article.id}` : 'not found'}`} />
+        <Grid container className='container' component='section'>
+            {isSuccess &&
+                <AppHelmet title={`Article ${article ? `#${article.id}` : 'not found'}`} />
+            }
             <DetailedArticleBreadcrumbs article={article} />
 
             {isError &&
-                <Grid size={12}>
-                    <Alert variant="filled" severity="error" >
-                        <AlertTitle>Error</AlertTitle>
-                        Something went wrong.
-                    </Alert>
-                </Grid>
+                <>
+                    <AppHelmet title={'Article not found'}/>
+                    <Grid size={12}>
+                        <Alert variant="filled" severity="error" >
+                            <AlertTitle>Error</AlertTitle>
+                            Article not found.
+                        </Alert>
+                    </Grid>
+                </>
             }
             {article &&
-                <Grid>
-                    <Typography fontFamily={'inherit'} color="info"><h2>{article.title}</h2></Typography>
-                    <Typography fontFamily={'inherit'} marginTop={2}><p>{article.text}</p></Typography>
+                <Grid component='article'>
+                    <Typography color="info" fontSize={24} component='h2'>{article.title}</Typography>
+                    <Typography marginTop={2}>{article.text}</Typography>
                     <time><Chip color="info" label={article.created_at} variant="outlined" sx={{ marginTop: 2 }} /></time>
                 </Grid>
             }

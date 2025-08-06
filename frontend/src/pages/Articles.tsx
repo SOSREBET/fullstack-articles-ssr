@@ -29,11 +29,15 @@ const Articles: FC = () => {
             maxWidth={'xl'}
             component='section'
             className="container"
-        >
-            <AppHelmet title="Articles" />
+        >   
+            <h1>Articles</h1>
+            <AppHelmet title="Articles"/>
             <Suspense>
                 <LazyArticleFilter reduxParams={newReduxParams} />
             </Suspense>
+
+            
+            <h2 hidden>Search results</h2>
 
             {data &&
                 <ArticleList

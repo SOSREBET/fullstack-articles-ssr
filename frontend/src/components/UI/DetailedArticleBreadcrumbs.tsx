@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router"
 import type { FC } from "react"
 import { Breadcrumbs, Link as MUILink, Typography } from "@mui/material"
 import type { IArticleDetail } from "../../types/Article"
