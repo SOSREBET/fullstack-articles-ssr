@@ -12,7 +12,7 @@ const DetailedArticle: FC = () => {
     const { data: article, isFetching, isError, isSuccess } = useGetArticleQuery(articleId ? articleId : '')
 
     return (
-        <Grid container className='container'>
+        <Grid container className='container' component='section'>
             {isSuccess &&
                 <AppHelmet title={`Article ${article ? `#${article.id}` : 'not found'}`} />
             }
@@ -20,7 +20,7 @@ const DetailedArticle: FC = () => {
 
             {isError &&
                 <>
-                    <AppHelmet title={'Article not found'} />
+                    <AppHelmet title={'Article not found'}/>
                     <Grid size={12}>
                         <Alert variant="filled" severity="error" >
                             <AlertTitle>Error</AlertTitle>
@@ -30,9 +30,9 @@ const DetailedArticle: FC = () => {
                 </>
             }
             {article &&
-                <Grid>
-                    <h2><Typography fontFamily={'inherit'} color="info" fontSize='inherit'>{article.title}</Typography></h2>
-                    <Typography fontFamily={'inherit'} marginTop={2}>{article.text}</Typography>
+                <Grid component='article'>
+                    <Typography color="info" fontSize={24} component='h2'>{article.title}</Typography>
+                    <Typography marginTop={2}>{article.text}</Typography>
                     <time><Chip color="info" label={article.created_at} variant="outlined" sx={{ marginTop: 2 }} /></time>
                 </Grid>
             }

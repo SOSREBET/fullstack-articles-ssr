@@ -6,12 +6,14 @@ interface IAppHelmet {
     title: string
     description?: string
     url?: string
+    canonical_url?: string
 }
 
 const AppHelmet: FC<IAppHelmet> = ({
     title,
     description = "Articles",
     url = "",
+    canonical_url
 }) => {
     return (
         <Helmet defer={false}>
@@ -23,6 +25,9 @@ const AppHelmet: FC<IAppHelmet> = ({
             <meta property="og:type" content="article" />
             <meta property="og:site_name" content="Articles" />
             <meta property="og:locale" content="en_US" />
+            {canonical_url &&
+                <link href='frontendDomain + url' rel='canonical' as=''/>
+            }
         </Helmet>
     )
 }

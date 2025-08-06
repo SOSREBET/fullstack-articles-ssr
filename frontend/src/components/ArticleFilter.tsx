@@ -31,8 +31,8 @@ const ArticleFilter: FC<IArticleFilter> = ({ reduxParams }) => {
     }, [reduxParams.search])
 
     return (
-        <Box sx={{ display: 'flex', alignItems: 'flex-end', width: '100%', marginBottom: 2 }}>
-            <Box sx={{ color: 'action.active', mr: 1 }} >
+        <Box sx={{ display: 'flex', alignItems: 'flex-end', width: '100%', marginBottom: 2, marginTop: 2 }} role="search" aria-label="Search by content">
+            <Box sx={{ color: 'action.active', mr: 1, mb: 0.5}} >
                 <img src={SearchIcon} alt="search icon" width={20} height={20}/>
             </Box>
             <TextField
