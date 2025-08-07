@@ -11,21 +11,23 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import dotenv_values
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+CONFIG = dotenv_values('../.env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-dr^%$q9sx!w%()+x^o@$28ov9)$y6s1vnx68=ilo66r9l2-ujw'
+SECRET_KEY = CONFIG.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = CONFIG.get('DEBUG')
 
 ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['192.168.1.4']
 
 
 # Application definition
@@ -109,13 +111,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = CONFIG.get('LANGUAGE_CODE')
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = CONFIG.get('TIME_ZONE')
 
-USE_I18N = True
+USE_I18N = False
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -140,8 +142,5 @@ REST_FRAMEWORK = {
 
 # CORS
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-    'http://192.168.1.4:5173'
-]
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ALLOWED_ORIGINS = CONFIG.get('CORS').split()

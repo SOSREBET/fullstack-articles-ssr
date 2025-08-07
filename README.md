@@ -12,14 +12,20 @@
 
 ## Introduction
 
-Modern fullstack website with Django REST Framework backend and React (TypeScript) frontend using Vite with SSR support and SEO optimization.
+A simple modern FullStack website. Django (DRF) as a backend. React TypeScript (implemented SSR) for the frontend. Vite as building tool.
+The backend implements an API for receiving articles and searching them (django-filters), there are no authorization mechanisms, etc.
+The frontend uses: react-router-dom, @reduxjs/toolkit, @mui/material, react-helmet-async, express (for SSR).
 
-## Features
 
-- **📦 Backend**: Python Django REST Framework (DRF) API
-- **💅 Frontend**: React with TypeScript
-- **⚡ Build Tool**: Vite with SSR support
-- **🔍 SEO Optimization**: Server-side rendering, meta tags, sitemap
-- **🛠️ Modern Stack**: Latest versions of all technologies
-- **📱 Responsive Design**: Works on all devices
+## Backend
 
+The backend includes both the API and the admin panel. The API is written using DRF tools. And django-filters contributed to the implementation of article search. The admin panel is configured using built-in django mechanisms. Also, because this is a simple project, the native sqlite3 database was used.
+
+
+## Frontend
+
+In the frontend, due to the use of MUI, there is an adaptive for all devices, as well as the corresponding styling. Due to redux, RTK-Queries were implemented and the store was configured. With the help of router-dom, the main pages were configured (+ 404). Thanks to react-helmet-async, SEO improvements were made. And express contributed to the implementation of SSR.
+
+## SEO
+
+Regarding SEO, the site has semantic layout, og tags, robots.txt file is configured. And all this is possible due to SSR.

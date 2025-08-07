@@ -3,6 +3,7 @@
 # Virtual environment
 venv/
 # .env
+.env
 
 # Static files
 staticfiles/
@@ -10,6 +11,7 @@ staticfiles/
 # Compiled Python files
 *.pyc
 __pycache__/
+db.sqlite3
 
 # Debugging logs
 *.log
