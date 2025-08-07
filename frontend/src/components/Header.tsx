@@ -21,7 +21,7 @@ const Header: FC = () => {
         <HeaderDrawer isOpen={isOpen} toggleDrawer={toggleDrawer} />
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="fixed" color='info'>
-                <Toolbar>
+                <Toolbar sx={{justifyContent: { xs: 'space-between', sm: 'inherit '}}}>
                     <IconButton
                         size="small"
                         edge="start"
@@ -32,7 +32,7 @@ const Header: FC = () => {
                     >
                         <img src={MenuIcon} alt="menu icon" width={20} height={20}/>
                     </IconButton>
-                    <Typography component="div" sx={{ flexGrow: 1 }}>
+                    <Typography component="div" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
                         <Button color="inherit" component={Link} to={routes.home.path}>Home</Button>
                         <Button color="inherit" component={Link} to={routes.articles.path}>Articles</Button>
                     </Typography>
