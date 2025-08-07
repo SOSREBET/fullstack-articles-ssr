@@ -11,6 +11,7 @@ staticfiles/
 # Compiled Python files
 *.pyc
 __pycache__/
+
 db.sqlite3
 
 # Debugging logs
