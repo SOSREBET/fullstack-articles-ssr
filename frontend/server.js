@@ -111,5 +111,5 @@ app.use('*all', async (req, res) => {
 
 // Start http server
 app.listen(port, () => {
-  console.log(`Server started at http://localhost:${port}`)
+  console.log(`Server started at http://http://192.168.1.4:${port}`)
 })
