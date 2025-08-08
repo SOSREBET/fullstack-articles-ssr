@@ -43,10 +43,7 @@ api_keys.py
 # Ignore secret files containing sensitive information
 secrets.txt
 
-# Ignore extra static
-backend/torgiassist/uploads/**
-!backend/torgiassist/uploads/**/
-!backend/torgiassist/.gitkeep
+
 
 # FRONTEND
 
